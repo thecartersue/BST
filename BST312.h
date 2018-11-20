@@ -126,8 +126,8 @@ private:
         TreeNode *right;
     };
 
-    TreeNode * root;
-
+    TreeNode *root;
+    TreeNode *newRoot = root;
 
     void insertItem(TreeNode*& t, const ItemType& newItem);
     void inOrderTraversal(TreeNode* t,vector<ItemType>& result) const;
@@ -305,6 +305,7 @@ template<class ItemType>
 void BST_312 <ItemType>::insertItem(const ItemType& newItem)
 {
     insertItem(root, newItem);
+    newRoot = root;
 }
 
 
@@ -395,18 +396,18 @@ vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 template<class ItemType>
 bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 {
-    if(root == NULL) {
+    if(newRoot == NULL) {
         return false;//we searched all of the nodes and didn't find the item
     }
-    else if(root->data == item) {//found the item
+    else if(newRoot->data == item) {//found the item
         return true;
     }
-    else if(item <= root->data) {
-        root = root->left;
+    else if(item <= newRoot->data) {
+        newRoot = newRoot->left;
         return isItemInTree(item);//keep going
     }
     else {
-        root = root->right;
+        newRoot = newRoot->right;
         return isItemInTree(item);//keep going
     }
 }
