@@ -288,15 +288,15 @@ bool BST_312 <ItemType>::isFull() const
 template<class ItemType>
 void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 {
-    if(t == NULL){
+    if(t == NULL){//Make a new node
         TreeNode* newNode = new TreeNode();
         newNode->data = newItem;
         newNode->left = newNode->right = NULL;
         t = newNode;
-    }else if (newItem < root->data){
+    }else if (newItem <= t->data){//if less than, insert left
         insertItem(t->left, newItem);
     }else{
-        insertItem(t->right, newItem);
+        insertItem(t->right, newItem);//otherwise insert right
     }
 }
 
@@ -312,7 +312,7 @@ void BST_312 <ItemType>::insertItem(const ItemType& newItem)
 template<class ItemType>
 int BST_312 <ItemType>::countNodes(TreeNode* t) const
 {
-    int count = 1;
+    int count = 1;//if it reaches this point, there's at least one node
     if (t->left != NULL) {
         count = count + countNodes(t->left);
     }
@@ -396,16 +396,18 @@ template<class ItemType>
 bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 {
     if(root == NULL) {
-        return false;
+        return false;//we searched all of the nodes and didn't find the item
     }
-    else if(root->data == item) {
+    else if(root->data == item) {//found the item
         return true;
     }
     else if(item <= root->data) {
-        return isItemInTree(root->left,item);
+        root = root->left;
+        return isItemInTree(item);//keep going
     }
     else {
-        return isItemInTree(root->right,item);
+        root = root->right;
+        return isItemInTree(item);//keep going
     }
 }
 #endif

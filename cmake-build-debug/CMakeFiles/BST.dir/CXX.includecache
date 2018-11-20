@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/zanefreeman/Downloads/BST/BST312.h
+/Users/zanefreeman/Documents/GitHub/BST/BST312.h
 cstdlib
 -
 iostream
@@ -14,11 +14,11 @@ iostream
 vector
 -
 
-/Users/zanefreeman/Downloads/BST/main.cpp
+/Users/zanefreeman/Documents/GitHub/BST/main.cpp
 iostream
 -
 fstream
 -
 BST312.h
-/Users/zanefreeman/Downloads/BST/BST312.h
+/Users/zanefreeman/Documents/GitHub/BST/BST312.h
 
